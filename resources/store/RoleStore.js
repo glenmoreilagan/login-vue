@@ -5,7 +5,7 @@ const RoleState = reactive({
   roleList : [],
   roleInfo: {
     role_name: '',
-    role_desc: '',
+    role_desc: ''
   },
   errValidation : []
 })
