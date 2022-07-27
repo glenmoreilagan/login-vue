@@ -1,0 +1,26 @@
+.btnNew {
+  width: 100px;
+}
+
+.center {
+  text-align: center
+}
+
+.btn-action {
+  cursor: pointer;
+  font-size: 18px;
+  color: #365899;
+}
+
+.btn-action:hover {
+  color: #8095BD;
+}
+
+table tbody tr td :is(.custom-badge-primary) {
+  border-radius: 50rem !important;
+}
+
+.custom-badge-primary {
+  background-color: rgba(13, 110, 253, 0.2) !important;
+  color: rgba(13, 110, 253, 1) !important;
+}
