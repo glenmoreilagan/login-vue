@@ -1,16 +1,18 @@
 <template lang="">
   <div class="container mt-3">
-    <!-- <h1>HOME</h1> -->
-    <div>
-      <h5>Name</h5>{{userInfo?.name}}
+    <div class="card">
+      <div class="card-header">
+        <i class="bi bi-caret-right-fill"></i> Profile
+      </div>
+      <div class="card-body">
+        <p>Name: {{ userInfo?.name }}</p>
+        <p>Email: {{ userInfo?.email }}</p>
+      </div>
     </div>
-    <div>
-      <h5>Email</h5>{{userInfo?.email}}
-    </div>
-    <div class="mt-3"><button class="btn btn-primary btn-sm" @click="logout">Logout</button></div>
   </div>
 </template>
 <script>
+
 export default {
   name: 'homeIndex',
   data() {
@@ -23,7 +25,7 @@ export default {
     me.axios.get('/api/user')
       .then(res => {
         // console.log(res.data)
-        me.userInfo = {name:res.data.name, email:res.data.email}
+        me.userInfo = { name: res.data.name, email: res.data.email }
       }).catch(err => {
         // console.log(err)
         // me.errValidation = JSON.parse(JSON.stringify(err.response.data.errors))
@@ -35,10 +37,10 @@ export default {
     logout() {
       let me = this
       me.axios.post('/api/logout')
-      .then(res => {
-        // console.log(res.data)
-        me.$router.push({name: 'login'})
-      })
+        .then(res => {
+          // console.log(res.data)
+          me.$router.push({ name: 'login' })
+        })
     }
   },
 }

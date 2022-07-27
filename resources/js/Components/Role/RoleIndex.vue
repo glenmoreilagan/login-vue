@@ -1,5 +1,4 @@
 <template lang="">
-  <!-- <NavBar /> -->
   <div class="container mt-3">
     <router-link class="mt-3" :to="'/role/add'"><button class="btn btn-primary btn-sm btnNew">NEW</button></router-link>
     <div class="table table-responive mt-3">
@@ -12,41 +11,32 @@
           </tr>
         </thead>
         <tbody>
-          <RoleItemVue v-bind:roles="roleList" v-on:DeleteAction="DeleteAction" />
+          <RoleItemVue />
         </tbody>
       </table>
     </div>
   </div>
 </template>
+
 <script>
-// import NavBar from '../../Components/NavBar/NavBar.vue'
+import { inject } from 'vue'
 import RoleItemVue from './RoleItem.vue'
 
 export default {
   name: 'RoleIndex',
-  components: {
-    // NavBar,
-    RoleItemVue
-  },
-  data() {
+  setup() {
+    const RoleStore = inject('RoleStore')
     return {
-      roleList: []
+      RoleStore
     }
   },
+  components: {
+    RoleItemVue
+  },
   created() {
-    let me = this
     console.log(`the component is now created.`)
 
-    me.axios.get('/api/roles')
-      .then(res => {
-        // console.log(res.data)
-
-        me.roleList = res.data.map((value, index) => ({
-          role_id: value.id,
-          role_name: value.role_name,
-          role_desc: value.role_desc
-        }))
-      })
+    this.RoleStore.RoleMethods.getAllRoles()
   },
   methods: {
     DeleteAction(data) {

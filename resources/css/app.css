@@ -24,3 +24,7 @@ table tbody tr td :is(.custom-badge-primary) {
   background-color: rgba(13, 110, 253, 0.2) !important;
   color: rgba(13, 110, 253, 1) !important;
 }
+
+.btnSave {
+  width: 100px;
+}

@@ -1,59 +1,39 @@
 <template lang="">
   <!-- <NavBar /> -->
   <div class="container mt-3">
-    <h4>ADD ROLE</h4>
+    <div class="card">
+      <div class="card-header">
+        <i class="bi bi-caret-right-fill"></i> Add Role
+      </div>
+      <div class="card-body">
+        <label>Role</label>
+        <input class="form-control form-control-sm" type="text" v-model="RoleStore.RoleState.roleInfo.role_name">
+    
+        <label>Description</label>
+        <input class="form-control form-control-sm" type="text" v-model="RoleStore.RoleState.roleInfo.role_desc">
+    
+        <button class="btn btn-primary btn-sm mt-3 btnSave" @click="RoleStore.RoleMethods.addRole">SAVE</button>
+      </div>
+    </div>
 
-    <label>Role</label>
-    <input class="form-control form-control-sm" type="text" v-model="roleInfo.role_name">
-
-    <label>Description</label>
-    <input class="form-control form-control-sm" type="text" v-model="roleInfo.role_desc">
-
-    <button class="btn btn-primary btn-sm mt-3 btnSave" @click="saveRole">SAVE</button>
   </div>
 </template>
+
 <script>
-// import NavBar from '../../Components/NavBar/NavBar.vue'
+import { inject } from 'vue'
 
 export default {
   name: 'AddRole',
-  components : {
-    // NavBar
-  },
-  data() {
+  setup() {
+    const RoleStore = inject('RoleStore')
     return {
-      roleInfo: {
-        role_name: '',
-        role_desc: ''
-      },
-
-      errValidation : []
+      RoleStore
     }
+  },
+  components: {
   },
   created() {
-    let me = this
-  },
-
-  methods: {
-    saveRole() {
-      let me = this
-      me.errValidation = []
-
-      me.axios.post('/api/roles', me.roleInfo)
-      .then(res => {
-        console.log(res.data)
-        me.roleInfo.role_name = ''
-        me.roleInfo.role_desc = ''
-      }).catch(err => {
-        // console.log(err)
-        me.errValidation = JSON.parse(JSON.stringify(err.response.data.errors))
-      })
-    }
-  },
+    console.log(`the component is now created.`)
+  }
 }
 </script>
-<style scoped>
-.btnSave {
-  width: 100px;
-}
-</style>

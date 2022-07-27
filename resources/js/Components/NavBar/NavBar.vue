@@ -29,7 +29,16 @@
   <router-view></router-view>
 </template>
 <script>
+
+import { provide } from 'vue'
+import UserStore from '../../../store/UserStore'
+import RoleStore from '../../../store/RoleStore'
+
 export default {
+  setup() {
+    provide('UserStore', UserStore)
+    provide('RoleStore', RoleStore)
+  },
   methods: {
     logout() {
       let me = this
@@ -39,7 +48,7 @@ export default {
         me.$router.push({name: 'login'})
       })
     }
-  },
+  }
 }
 </script>
 <style>
