@@ -23,7 +23,7 @@ const UserMethods = {
         user_id: value.id,
         name: value.name,
         email: value.email,
-        role_name: value.role_name,
+        role_name: value.role !== null ? value.role.role_name : 'No-Role'
       }))
     }).catch(err => {
       console.log(err)

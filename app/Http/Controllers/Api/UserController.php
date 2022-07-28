@@ -17,14 +17,20 @@ class UserController extends Controller
    */
   public function index()
   {
-    $users = DB::table('users')
-    ->select('users.id', 'users.name', 'users.email')
-    ->addSelect(DB::raw("ifnull(roles.role_name, 'No-Role') as role_name"))
-    ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
-    ->get();
 
-    return $users;
-    return User::all();
+    // eloquent
+    return User::with('role')->get();
+    
+    // query builder
+    // $users = DB::table('users')
+    // ->select('users.id', 'users.name', 'users.email')
+    // ->addSelect(DB::raw("ifnull(roles.role_name, 'No-Role') as role_name"))
+    // ->leftJoin('roles', 'roles.id', '=', 'users.role_id')
+    // ->get();
+
+    // return $users;
+
+    // return User::all();
   }
 
   /**
